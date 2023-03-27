@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Power
   - Walls
+  - Arrow
   layers:
   - Default
   - TransparentFX
