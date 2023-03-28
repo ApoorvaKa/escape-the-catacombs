@@ -265,7 +265,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   debugLines: 0
-  patrolSpeed: 2
+  patrolSpeed: 1.75
   alertSpeed: 3
   turnRate: 5
   AlertTimer: 5
@@ -279,7 +279,6 @@ MonoBehaviour:
   tLight: {fileID: 0}
   spriteController: {fileID: 3961061798078084256}
   shootingSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
-  pickPocketSound: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
 --- !u!114 &3974724679815469199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,16 +910,6 @@ CompositeCollider2D:
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
-  - m_Collider: {fileID: 3974724681257338685}
-    m_ColliderPaths:
-    - - X: 5680427
-        Y: 1480464
-      - X: -6045646
-        Y: 1480464
-      - X: -6045646
-        Y: -22023774
-      - X: 5680427
-        Y: -22023774
   - m_Collider: {fileID: 3974724681257338687}
     m_ColliderPaths:
     - - X: 7643141
@@ -931,6 +920,16 @@ CompositeCollider2D:
         Y: -10672417
       - X: 7643141
         Y: -10672417
+  - m_Collider: {fileID: 3974724681257338685}
+    m_ColliderPaths:
+    - - X: 5680427
+        Y: 1480464
+      - X: -6045646
+        Y: 1480464
+      - X: -6045646
+        Y: -22023774
+      - X: 5680427
+        Y: -22023774
   m_CompositePaths:
     m_Paths:
     - - {x: 0.5680134, y: -2.2023773}
