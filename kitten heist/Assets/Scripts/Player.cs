@@ -49,7 +49,16 @@ public class Player : MonoBehaviour
     IEnumerator waiter()
     {
         //Wait for 5 seconds
-        yield return new WaitForSeconds(5);
+        float counter = 0;
+        float waitTime = 5;
+        while (counter < waitTime)
+        {
+            //Increment Timer until counter >= waitTime
+            counter += Time.deltaTime;
+            Debug.Log("We have waited for: " + counter + " seconds");
+ 
+            yield return null;
+        }
 
         canMove = true; 
     }
