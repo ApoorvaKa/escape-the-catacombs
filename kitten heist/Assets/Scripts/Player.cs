@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public static Player p;
 
     public float speed;
-    public bool canMove = true;
+    public static bool canMove = true;
     public bool isHiding = false;
     public Animator animator;
 
@@ -31,6 +31,11 @@ public class Player : MonoBehaviour
 
             rb.velocity = new Vector2(horizontal, vertical).normalized * speed;
 
+        } else if (!canMove && !isHiding) {
+            rb.velocity = new Vector2(0, 0);
+            animator.SetFloat("Horizontal", 0);
+            animator.SetFloat("Speed", 0);
+            StartCoroutine(waiter());
         } else {
             rb.velocity = new Vector2(0, 0);
             animator.SetFloat("Horizontal", 0);
@@ -39,5 +44,13 @@ public class Player : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
         }
 
+    }
+
+    IEnumerator waiter()
+    {
+        //Wait for 5 seconds
+        yield return new WaitForSeconds(5);
+
+        canMove = true; 
     }
 }
