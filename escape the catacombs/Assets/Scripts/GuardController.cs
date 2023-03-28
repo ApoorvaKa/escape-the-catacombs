@@ -49,11 +49,13 @@ public class GuardController : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip shootingSound;
+    Animator _animator;
     
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
 
     }
 
@@ -142,7 +144,7 @@ public class GuardController : MonoBehaviour
                     CastRays();
                 break;
             case GuardStates.FollowingPlayer:
-                
+                _animator.SetTrigger("isAlert");
                 path.maxSpeed = alertSpeed;
                 if (lightOn)
                     CastRays(2);
@@ -155,6 +157,7 @@ public class GuardController : MonoBehaviour
                 }
                 if (AlertTimeLeft <= 0)
                 {
+                    _animator.ResetTrigger("isAlert");
                     target = null;
                     stopTimeLeft = 3f;
                     sight.intensity = .8f;
