@@ -9,4 +9,5 @@ public class Item : ScriptableObject
     public string title, description;
     public Sprite itemIcon;
     public string tag;
+    public bool isConsumable;
 }

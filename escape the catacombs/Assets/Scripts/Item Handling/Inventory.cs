@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public GameObject player;
     public static Inventory i;
     public List<Item> itemsHeld;
     public Dictionary<Item, GameObject> itemInInventory;
@@ -24,9 +25,12 @@ public class Inventory : MonoBehaviour
             GameManager.gm.ShowItemObtained(i);
             var button = GameManager.gm.AddToInventory(i);
             itemInInventory.Add(i, button);
+            if (i.tag == "speed"){
+                Debug.Log("speed");
+                player.GetComponent<Player>().isBoosted = true;
+            }
         }
     }
-
 
     public bool UseItem(Item i)
     {
