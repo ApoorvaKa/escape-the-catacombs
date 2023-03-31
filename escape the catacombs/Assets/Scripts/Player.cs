@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float speed;
     public static bool canMove = true;
     public bool isHiding = false;
+
+    public bool isBoosted = false;
     public Animator animator;
 
     private Rigidbody2D rb;
@@ -20,6 +22,11 @@ public class Player : MonoBehaviour
     }
     
     void Update() {
+        if (isBoosted) {
+            speed = 10;
+        } else {
+            speed = 5;
+        }
         if (canMove && !isHiding) {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
             GetComponent<BoxCollider2D>().enabled = true;
