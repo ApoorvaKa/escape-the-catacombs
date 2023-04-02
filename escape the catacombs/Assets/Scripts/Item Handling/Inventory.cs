@@ -29,6 +29,11 @@ public class Inventory : MonoBehaviour
                 Debug.Log("speed");
                 player.GetComponent<Player>().isBoosted = true;
             }
+            if (i.tag == "food"){
+                Debug.Log("food");
+                player.GetComponent<Player>().hunger += 1;
+                Debug.Log(player.GetComponent<Player>().hunger);
+            }
         }
     }
 

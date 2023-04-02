@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
     public static Player p;
 
     public float speed;
+    public bool isBoosted = false;
     public static bool canMove = true;
     public bool isHiding = false;
 
-    public bool isBoosted = false;
+    public float hunger = 10;
+
     public Animator animator;
 
     private Rigidbody2D rb;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
     void Start() {
         p = this;
         rb = GetComponent<Rigidbody2D>();
+        InvokeRepeating("LowerFood", 5.0f, 5.0f);
     }
     
     void Update() {
@@ -51,6 +54,15 @@ public class Player : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
         }
 
+    }
+    // lower hunger every 5 seconds
+    public void LowerFood(){
+        hunger -= 1;
+        Debug.Log("hunger: " + hunger);
+        if (hunger <= 0) {
+            // game over
+            GameManager.gm.Restart();
+        }
     }
 
     IEnumerator waiter()
