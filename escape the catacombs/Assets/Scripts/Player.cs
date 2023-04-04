@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             animator.SetFloat("Horizontal", 0);
             animator.SetFloat("Speed", 0);
+            GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
             StartCoroutine(waiter());
         } else {
             rb.velocity = new Vector2(0, 0);
