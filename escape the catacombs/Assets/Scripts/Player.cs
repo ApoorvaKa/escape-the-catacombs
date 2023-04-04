@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public bool isBoosted = false;
     public static bool canMove = true;
     public bool isHiding = false;
+    public static bool slowZone = false; 
 
     public float hunger = 10;
 
@@ -22,16 +23,26 @@ public class Player : MonoBehaviour
         p = this;
         rb = GetComponent<Rigidbody2D>();
         InvokeRepeating("LowerFood", 5.0f, 5.0f);
+        canMove = true; 
+        isHiding = false; 
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
     
     void Update() {
         if (isBoosted) {
             speed = 10;
+        } else if (slowZone) {
+            speed = 2;
         } else {
-            speed = 5;
+            speed = 5; 
         }
+
         if (canMove && !isHiding) {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+            if(slowZone){
+                GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
+            } else {
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+            }
             GetComponent<BoxCollider2D>().enabled = true;
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
@@ -45,7 +56,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             animator.SetFloat("Horizontal", 0);
             animator.SetFloat("Speed", 0);
-            GetComponent<SpriteRenderer>().color = new Color(0, 1, 1, 1);
+            GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
             StartCoroutine(waiter());
         } else {
             rb.velocity = new Vector2(0, 0);

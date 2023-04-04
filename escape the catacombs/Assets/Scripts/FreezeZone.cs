@@ -10,7 +10,6 @@ public class FreezeZone : MonoBehaviour
         if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Player"))
         {
             Player.canMove = false;
-            Debug.Log(Player.canMove);
         }
     }
 }
