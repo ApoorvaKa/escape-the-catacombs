@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     float horizontal, vertical;
 
     void Start() {
+        GameManager.gm.hunger = (int)hunger;
         p = this;
         rb = GetComponent<Rigidbody2D>();
         InvokeRepeating("LowerFood", 5.0f, 5.0f);
@@ -70,6 +71,8 @@ public class Player : MonoBehaviour
     // lower hunger every 5 seconds
     public void LowerFood(){
         hunger -= 1;
+        GameManager.gm.hunger = (int)hunger;
+        GameManager.gm.hungerText.text = hunger.ToString();
         Debug.Log("hunger: " + hunger);
         if (hunger <= 0) {
             // game over

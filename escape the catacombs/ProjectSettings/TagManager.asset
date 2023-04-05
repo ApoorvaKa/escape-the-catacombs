@@ -7,6 +7,9 @@ TagManager:
   - Power
   - Walls
   - Arrow
+  - ChestPoint
+  - ObstaclePoint
+  - Chest
   layers:
   - Default
   - TransparentFX

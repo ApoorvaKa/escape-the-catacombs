@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI[] rank;
     public TextMeshProUGUI itemCounter;
     public bool hasEnded = false;
+
+    public TextMeshProUGUI hungerText;
+    public int hunger;
     // Start is called before the first frame update
     void Start()
     {
