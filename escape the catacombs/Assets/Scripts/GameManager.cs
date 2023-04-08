@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateMixerVolume()
     {
-        print("Changed");
+        //print("Changed");
         masterMixerGroup.audioMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolume) * 20);
         musicMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolume) * 20);
         sfxMixerGroup.audioMixer.SetFloat("SFXVolume", Mathf.Log10(sfxVolume) * 20);
