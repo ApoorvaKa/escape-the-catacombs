@@ -49,6 +49,17 @@ public class GuardController : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip shootingSound;
+
+    public string dialogue;
+    private List<string> standardDialogueList = new List<string>{
+        "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!"
+    };
+    
+    private List<string> alertDialogueList = new List<string>
+    {
+        "Get them!", "Quick Shoot", "Grab the Cat!"
+
+    };
     Animator _animator;
     
     // Start is called before the first frame update
@@ -56,7 +67,7 @@ public class GuardController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
-
+        InvokeRepeating("StandardDialogueSelection", 5.0f, 5.0f);
     }
 
     public void TurnOffLight()
@@ -145,6 +156,7 @@ public class GuardController : MonoBehaviour
                 break;
             case GuardStates.FollowingPlayer:
                 _animator.SetTrigger("isAlert");
+                AlertDialogueSelection();
                 path.maxSpeed = alertSpeed;
                 if (lightOn)
                     CastRays(2);
@@ -200,6 +212,21 @@ public class GuardController : MonoBehaviour
                 g.GetComponent<Projectile>().Move();
             }
             shootingDone = true;
+        }
+    }
+
+    private void AlertDialogueSelection(){
+        dialogue = alertDialogueList[Random.Range(0, alertDialogueList.Count - 1)];
+        Debug.Log(dialogue);
+    }
+
+    private void StandardDialogueSelection(){
+        if (GuardStates.FollowingPlayer != state){
+            Debug.Log("StandardDialogueSelection");
+            if(Random.Range(0, 10) == 0){
+                dialogue = standardDialogueList[Random.Range(0, standardDialogueList.Count - 1)];
+            }
+            Debug.Log(dialogue);
         }
     }
 

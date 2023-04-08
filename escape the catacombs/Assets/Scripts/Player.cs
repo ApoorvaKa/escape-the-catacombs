@@ -73,7 +73,6 @@ public class Player : MonoBehaviour
         hunger -= 1;
         GameManager.gm.hunger = (int)hunger;
         GameManager.gm.hungerText.text = hunger.ToString();
-        Debug.Log("hunger: " + hunger);
         if (hunger <= 0) {
             // game over
             GameManager.gm.Restart();
