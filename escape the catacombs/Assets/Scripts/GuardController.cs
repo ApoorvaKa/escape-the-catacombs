@@ -52,12 +52,12 @@ public class GuardController : MonoBehaviour
 
     public string dialogue;
     private List<string> standardDialogueList = new List<string>{
-        "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!"
+        "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!", "Make sure we keep the keys", "Did you forget your supplies somewhere?"
     };
     
     private List<string> alertDialogueList = new List<string>
     {
-        "Get them!", "Quick Shoot", "Grab the Cat!"
+        "Get them!", "Quick Shoot", "Grab the Cat!", "The cat is out", "The cat is loose", "Grab them!"
 
     };
     Animator _animator;
@@ -225,10 +225,9 @@ public class GuardController : MonoBehaviour
             Debug.Log("StandardDialogueSelection");
             if(Random.Range(0, 10) == 0){
                 dialogue = standardDialogueList[Random.Range(0, standardDialogueList.Count - 1)];
+                Debug.Log(dialogue);
             }
-            Debug.Log(dialogue);
         }
     }
-
 
 }
