@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
         InvokeRepeating("LowerFood", 5.0f, 5.0f);
         canMove = true; 
         isHiding = false; 
+        slowZone = false;
+        speed = 5; 
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
     
