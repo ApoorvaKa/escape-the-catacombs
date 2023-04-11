@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI itemCounter;
     public bool hasEnded = false;
 
+    public GameObject HungerScreen;
     public TextMeshProUGUI hungerText;
     public GameObject hungerBar;
     public GameObject orangeBar;
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0;
         PauseScreen.SetActive(true);
+        HungerScreen.SetActive(false);
     }
 
     public void Unpause()
@@ -124,6 +126,7 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         CloseItemObtained();
         CloseInventory();
+        HungerScreen.SetActive(true);
         if(!LevelEnd.activeInHierarchy)
             Time.timeScale = 1;
         PauseScreen.SetActive(false);

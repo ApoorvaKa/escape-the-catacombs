@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
 
     public float hunger = 10;
 
-    public Animator animator;
+    public Animator playerAnimator;
+    public Animator batAnimator; 
 
     private Rigidbody2D rb;
     float horizontal, vertical;
@@ -50,21 +51,27 @@ public class Player : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
 
-            animator.SetFloat("Horizontal", horizontal);
-            animator.SetFloat("Speed", horizontal * horizontal + vertical * vertical);
+            playerAnimator.SetFloat("Horizontal", horizontal);
+            playerAnimator.SetFloat("Speed", horizontal * horizontal + vertical * vertical);
+            batAnimator.SetFloat("Horizontal", horizontal);
+            batAnimator.SetFloat("Speed", horizontal * horizontal + vertical * vertical);
 
             rb.velocity = new Vector2(horizontal, vertical).normalized * speed;
 
         } else if (!canMove && !isHiding) {
             rb.velocity = new Vector2(0, 0);
-            animator.SetFloat("Horizontal", 0);
-            animator.SetFloat("Speed", 0);
+            playerAnimator.SetFloat("Horizontal", 0);
+            playerAnimator.SetFloat("Speed", 0);
+            batAnimator.SetFloat("Horizontal", 0);
+            batAnimator.SetFloat("Speed", 0);
             GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 1);
             StartCoroutine(waiter());
         } else {
             rb.velocity = new Vector2(0, 0);
-            animator.SetFloat("Horizontal", 0);
-            animator.SetFloat("Speed", 0);
+            playerAnimator.SetFloat("Horizontal", 0);
+            playerAnimator.SetFloat("Speed", 0);
+            batAnimator.SetFloat("Horizontal", 0);
+            batAnimator.SetFloat("Speed", 0);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
         }
