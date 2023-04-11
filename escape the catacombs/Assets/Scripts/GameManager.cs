@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     public bool hasEnded = false;
 
     public TextMeshProUGUI hungerText;
+    public GameObject hungerBar;
+    public GameObject orangeBar;
     public int hunger;
     // Start is called before the first frame update
     void Start()

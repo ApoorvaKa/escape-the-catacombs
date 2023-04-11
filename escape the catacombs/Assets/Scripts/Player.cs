@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         hunger -= 1;
         GameManager.gm.hunger = (int)hunger;
         GameManager.gm.hungerText.text = hunger.ToString();
+        GameManager.gm.hungerBar.transform.localScale = new Vector3( hunger/20, 1 ,  1 );
         if (hunger <= 0) {
             // game over
             GameManager.gm.Restart();
