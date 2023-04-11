@@ -14,6 +14,22 @@ public class ArrowGenerator : MonoBehaviour
 
     private Quaternion arrowRotation;
 
+    void Start() {
+        if (direction == "R") {
+            Vector3 newRotation = new Vector3(0, 0, 45);
+            transform.eulerAngles = newRotation;
+        } else if (direction == "L") {
+            Vector3 newRotation = new Vector3(0, 0, -135);
+            transform.eulerAngles = newRotation;
+        } else if (direction == "U") {
+            Vector3 newRotation = new Vector3(0, 0, 135);
+            transform.eulerAngles = newRotation;
+        } else if (direction == "D") {
+            Vector3 newRotation = new Vector3(0, 0, -45);
+            transform.eulerAngles = newRotation;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
