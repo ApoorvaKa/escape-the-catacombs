@@ -10,6 +10,7 @@ TagManager:
   - ChestPoint
   - ObstaclePoint
   - Chest
+  - Potion
   layers:
   - Default
   - TransparentFX
