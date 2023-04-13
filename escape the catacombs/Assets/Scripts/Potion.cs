@@ -12,7 +12,10 @@ public class Potion : MonoBehaviour
     private float timer;
     public GameObject particles;
     private GameObject particleInstance;
-   
+
+    public float distance = 0;
+    bool checker = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +33,17 @@ public class Potion : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= .5){
-            Destroy(gameObject);
+        distance = Vector2.Distance(transform.position, mousePos);
+        if(distance < 0.5f && checker)
+        {
+            checker = false;
+            rb.velocity = new Vector2(0, 0);
+            foreach (GuardController distract in GameManager.gm.distracts)
+            {
+                distract.GoToDistraction(transform);
+            }
+            Destroy(gameObject, 20f);
+            gameObject.GetComponent<SpriteRenderer>().color = Color.clear;
             particleInstance = Instantiate(particles, transform.position, Quaternion.identity);
             Destroy(particleInstance, 5f);
             timer = 0;

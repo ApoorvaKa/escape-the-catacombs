@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     public GameObject hungerBar;
     public GameObject orangeBar;
     public int hunger;
+
+    public List<GuardController> distracts = new List<GuardController>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void EndScreen()
     {
+        HungerScreen.SetActive(false);
         hasEnded = true;
         Time.timeScale = 0f;
         itemCounter.text = itemsObtained + " / " + itemsInLevel;
@@ -160,6 +164,7 @@ public class GameManager : MonoBehaviour
         description.text = i.description;
         icon.sprite = i.itemIcon;
         ItemObtainedScreen.SetActive(true);
+        HungerScreen.SetActive(false);
     }
 
     public void CloseItemObtained()
@@ -167,6 +172,7 @@ public class GameManager : MonoBehaviour
         if (!InventoryScreen.activeInHierarchy && !PauseScreen.activeInHierarchy && !LevelEnd.activeInHierarchy)
             Time.timeScale = 1f;
         ItemObtainedScreen.SetActive(false);
+        HungerScreen.SetActive(true);
     }
 
     public void TurnOnInteractText()
@@ -227,6 +233,10 @@ public class GameManager : MonoBehaviour
             {
                 Unpause();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            SceneManager.LoadScene("LevelSandbox");
         }
     }
 }

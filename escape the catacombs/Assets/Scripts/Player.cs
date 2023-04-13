@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player p;
 
+    public float baseSpeed = 5;
     public float speed;
     public bool isBoosted = false;
     public static bool canMove = true;
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
         canMove = true; 
         isHiding = false; 
         slowZone = false;
-        speed = 5; 
+        speed = baseSpeed;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
     
@@ -38,7 +39,10 @@ public class Player : MonoBehaviour
         } else if (slowZone) {
             speed = 2;
         } else {
-            speed = 5; 
+            if(hunger > 0)
+                speed = baseSpeed - (1/hunger);
+            if (hunger == 0)
+                speed = baseSpeed - 1;
         }
 
         if (canMove && !isHiding) {
@@ -79,13 +83,14 @@ public class Player : MonoBehaviour
     }
     // lower hunger every 5 seconds
     public void LowerFood(){
-        hunger -= 1;
+        if (hunger >= 1)
+            hunger -= 1;
         GameManager.gm.hunger = (int)hunger;
         GameManager.gm.hungerText.text = hunger.ToString();
         GameManager.gm.hungerBar.transform.localScale = new Vector3( hunger/20, 1 ,  1 );
         if (hunger <= 0) {
             // game over
-            GameManager.gm.Restart();
+            //GameManager.gm.Restart();
         }
     }
 

@@ -27,11 +27,14 @@ public class Inventory : MonoBehaviour
             itemInInventory.Add(i, button);
             if (i.tag == "speed"){
                 Debug.Log("speed");
-                player.GetComponent<Player>().isBoosted = true;
+                Player.p.isBoosted = true;
             }
             if (i.tag == "food"){
                 Debug.Log("food");
-                player.GetComponent<Player>().hunger += 1;
+                Player.p.hunger = 20;
+                GameManager.gm.hunger = 20;
+                GameManager.gm.hungerBar.transform.localScale = new Vector3(20 / 20, 1, 1);
+                UseItem(i);
                 Debug.Log(player.GetComponent<Player>().hunger);
             }
         }

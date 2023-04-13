@@ -8,6 +8,8 @@ public class HidingObject : MonoBehaviour
     public GameObject exitPosition;
     public LayerMask layer;
     public bool isHiding;
+    public ParticleSystem boxSparkles;
+    public float pDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,32 @@ public class HidingObject : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.E)){
         //    HidePlayer();
         //}
+        var emission = boxSparkles.emission;
+        pDistance = Vector2.Distance(Player.p.transform.position, transform.position);
+        if(pDistance < 5 && pDistance > 4)
+        {
+            emission.rateOverTime = 1;
+        }
+        else if(pDistance < 4 && pDistance > 3)
+        {
+            emission.rateOverTime = 3;
+        }
+        else if (pDistance < 4 && pDistance > 2)
+        {
+            emission.rateOverTime = 5;
+        }
+        else if (pDistance < 4 && pDistance > 1)
+        {
+            emission.rateOverTime = 10;
+        }
+        else if (pDistance < 1)
+        {
+            emission.rateOverTime = 13;
+        }
+        else
+        {
+            emission.rateOverTime = 0;
+        }
         if (Time.timeScale != 0 && Input.GetMouseButtonDown(0))
         {
             HidePlayer();

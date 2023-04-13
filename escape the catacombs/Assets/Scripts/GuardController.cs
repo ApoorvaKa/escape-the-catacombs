@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using TMPro;
 
 public class GuardController : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class GuardController : MonoBehaviour
         Patrolling,
         FollowingPlayer,
         GoingToPoint,
-        SpinAndSearch
+        SpinAndSearch,
+        Distracted
     }
 
     public GuardStates state = GuardStates.Stopped;
@@ -45,11 +47,15 @@ public class GuardController : MonoBehaviour
     public bool lightOn = true;
     public ToggleLights tLight;
 
+    public float distractionRange = 7.0f;
+
     public GameObject spriteController;
 
     private AudioSource audioSource;
     public AudioClip shootingSound;
 
+    public GameObject witchTextCanvas;
+    public TextMeshProUGUI displayedDialogue;
     public string dialogue;
     private List<string> standardDialogueList = new List<string>{
         "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!", "Make sure we keep the keys", "Did you forget your supplies somewhere?"
@@ -60,6 +66,13 @@ public class GuardController : MonoBehaviour
         "Get them!", "Quick Shoot", "Grab the Cat!", "The cat is out", "The cat is loose", "Grab them!"
 
     };
+
+    private List<string> distractedDialoguseList = new List<string>
+    {
+        "Guess a potion fell...", "That Cat must be near!", "I don't want to clean that."
+    };
+    bool alertStart;
+    
     Animator _animator;
     
     // Start is called before the first frame update
@@ -68,6 +81,9 @@ public class GuardController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         InvokeRepeating("StandardDialogueSelection", 5.0f, 5.0f);
+        GameManager.gm.distracts.Add(this);
+        displayedDialogue.text = "";
+        alertStart = true;
     }
 
     public void TurnOffLight()
@@ -85,6 +101,22 @@ public class GuardController : MonoBehaviour
         target = pos;
         destSetter.target = target;
         state = GuardStates.GoingToPoint;
+    }
+
+    public void GoToDistraction(Transform pos)
+    {
+        if(state != GuardStates.FollowingPlayer)
+        {
+            Debug.Log("Going to potion");
+            target = pos;
+            float dist = Vector2.Distance(this.transform.position, target.position);
+            if (dist < distractionRange)
+            {
+                destSetter.target = target;
+                state = GuardStates.Distracted;
+            }
+        }
+
     }
 
     public void CastRays(float multiplier = 1f)
@@ -124,7 +156,8 @@ public class GuardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        displayedDialogue.text = dialogue;
+        witchTextCanvas.gameObject.transform.position = transform.position;
         switch (state)
         {
             case GuardStates.Stopped:
@@ -174,6 +207,7 @@ public class GuardController : MonoBehaviour
                     stopTimeLeft = 3f;
                     sight.intensity = .8f;
                     state = GuardStates.Stopped;
+                    alertStart = true;
                 }
                 
                 break;
@@ -189,6 +223,15 @@ public class GuardController : MonoBehaviour
                 break;
             case GuardStates.SpinAndSearch:
                 
+                break;
+            case GuardStates.Distracted:
+                path.maxSpeed = patrolSpeed;
+                if(Vector2.Distance(transform.position, target.position) < 1f)
+                {
+                    stopTimeLeft = 1.5f;
+                    state = GuardStates.Stopped;
+                    DistractedDialogueSelection();
+                }
                 break;
             default:
                 break;
@@ -216,18 +259,36 @@ public class GuardController : MonoBehaviour
     }
 
     private void AlertDialogueSelection(){
-        dialogue = alertDialogueList[Random.Range(0, alertDialogueList.Count - 1)];
-        Debug.Log(dialogue);
+        if (alertStart)
+        {
+            dialogue = alertDialogueList[Random.Range(0, alertDialogueList.Count - 1)];
+            Debug.Log(dialogue);
+            StartCoroutine(clearDialogue());
+            alertStart = false;
+        }
     }
 
     private void StandardDialogueSelection(){
-        if (GuardStates.FollowingPlayer != state){
+        if (GuardStates.FollowingPlayer != state && GuardStates.Distracted != state){
             Debug.Log("StandardDialogueSelection");
             if(Random.Range(0, 10) == 0){
                 dialogue = standardDialogueList[Random.Range(0, standardDialogueList.Count - 1)];
                 Debug.Log(dialogue);
+                StartCoroutine(clearDialogue());
             }
         }
     }
 
+    private void DistractedDialogueSelection()
+    {
+        dialogue = distractedDialoguseList[Random.Range(0, distractedDialoguseList.Count - 1)];
+        Debug.Log(dialogue);
+        StartCoroutine(clearDialogue());
+    }
+
+    IEnumerator clearDialogue()
+    {
+        yield return new WaitForSeconds(3f);
+        dialogue = "";
+    }
 }

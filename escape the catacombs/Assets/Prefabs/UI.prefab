@@ -6966,8 +6966,12 @@ MonoBehaviour:
   - {fileID: 8107812407620035627}
   itemCounter: {fileID: 8107812405880396367}
   hasEnded: 0
+  HungerScreen: {fileID: 0}
   hungerText: {fileID: 0}
+  hungerBar: {fileID: 0}
+  orangeBar: {fileID: 0}
   hunger: 0
+  distracts: []
 --- !u!1 &8107812406742247094
 GameObject:
   m_ObjectHideFlags: 0
