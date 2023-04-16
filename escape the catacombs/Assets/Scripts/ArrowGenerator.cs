@@ -13,19 +13,21 @@ public class ArrowGenerator : MonoBehaviour
     private float elapsedTime = 0f;
 
     private Quaternion arrowRotation;
+    public Animator anim;
+    public GameObject highlight;
 
     void Start() {
         if (direction == "R") {
-            Vector3 newRotation = new Vector3(0, 0, 45);
+            Vector3 newRotation = new Vector3(0, 0, 0);
             transform.eulerAngles = newRotation;
         } else if (direction == "L") {
-            Vector3 newRotation = new Vector3(0, 0, -135);
+            Vector3 newRotation = new Vector3(0, 0, 180);
             transform.eulerAngles = newRotation;
         } else if (direction == "U") {
-            Vector3 newRotation = new Vector3(0, 0, 135);
+            Vector3 newRotation = new Vector3(0, 0, 90);
             transform.eulerAngles = newRotation;
         } else if (direction == "D") {
-            Vector3 newRotation = new Vector3(0, 0, -45);
+            Vector3 newRotation = new Vector3(0, 0, -90);
             transform.eulerAngles = newRotation;
         }
     }
@@ -34,10 +36,14 @@ public class ArrowGenerator : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-
+        if(elapsedTime >= (timeBetweenArrows - 0.25f)){
+            highlight.SetActive(true);
+        }
         if (elapsedTime >= timeBetweenArrows)
         {
+            highlight.SetActive(false);
             elapsedTime = 0f;
+            anim.Play("Spawn Arrow");
             GenerateArrow();
         }
     }
@@ -53,6 +59,7 @@ public class ArrowGenerator : MonoBehaviour
         } else if (direction == "D") {
             arrowRotation = Quaternion.Euler(0, 0, 180);
         }
+        
 
         GameObject arrow = Instantiate(arrowPrefab, transform.position, arrowRotation);
         arrow.GetComponent<Arrow>().speed = speed;
