@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HidingObject : MonoBehaviour
+public class HidingV1 : MonoBehaviour
 {
-
     public GameObject exitPosition;
     public LayerMask layer;
     public bool isHiding;
@@ -14,10 +13,13 @@ public class HidingObject : MonoBehaviour
     public static float resetTimeAmount = 5; 
     public float timeRemaining = resetTimeAmount;
 
-    // Start is called before the first frame update
+    public Animator anim;
+
     void Start()
     {
         isHiding = false;
+
+        anim = GetComponent<Animator>();
     }
 
     void Update(){
@@ -54,6 +56,7 @@ public class HidingObject : MonoBehaviour
         if (Time.timeScale != 0 && Input.GetMouseButtonDown(0))
         {
             HidePlayer();
+            Debug.Log("Pressed");
         }
 
         if (timeRemaining > 0 && isHiding)
@@ -89,6 +92,7 @@ public class HidingObject : MonoBehaviour
                     GetComponent<SpriteRenderer>().color = Color.gray;
                     isHiding = true;
                     print("Player hiding");
+                    anim.SetTrigger("TrBoxBreak"); 
                     Player.p.isHiding = true;
                     //Player.p.GetComponent<BoxCollider2D>().enabled = true;
                 }
