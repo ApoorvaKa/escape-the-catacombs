@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2079561033616376529}
   - component: {fileID: -7435054701373879697}
   - component: {fileID: 787859708661582105}
+  - component: {fileID: 1743511753804449085}
   m_Layer: 0
   m_Name: Throwable Potion
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   particles: {fileID: 2002109360366135047, guid: 63ae9aa17b9482b47a0223905e048797, type: 3}
+  distance: 0
 --- !u!50 &787859708661582105
 Rigidbody2D:
   serializedVersion: 4
@@ -121,3 +123,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!61 &1743511753804449085
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4367068787887099896}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0024991035, y: -0.0012494326}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6875, y: 0.8125}
+    newSize: {x: 0.6875, y: 0.8125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7974539, y: 0.8949652}
+  m_EdgeRadius: 0
