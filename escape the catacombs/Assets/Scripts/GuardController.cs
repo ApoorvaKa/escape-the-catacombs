@@ -58,18 +58,32 @@ public class GuardController : MonoBehaviour
     public TextMeshProUGUI displayedDialogue;
     public string dialogue;
     private List<string> standardDialogueList = new List<string>{
-        "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!", "Make sure we keep the keys", "Did you forget your supplies somewhere?"
+        "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!", "Make sure we keep the keys", "Did you forget your supplies somewhere?",
+        "Don't underestimate that cat. It's smarter than you think.","I don't trust that cat. It's been plotting something since day one.",
+        "Keep your broomstick close. That cat has a knack for sneaking up on you.","I heard that cat can talk. Keep your ears open.",
+        "Make sure you check the cells thoroughly. That cat could be hiding anywhere.","If that cat gets away, it'll be on your head.",
+        "I'm not taking any chances with that cat. I've got my wand at the ready.","I swear that cat is possessed. It's not natural.",
+        "Keep your eyes peeled. That cat might have some tricks up its sleeve."
     };
     
     private List<string> alertDialogueList = new List<string>
     {
-        "Get them!", "Quick Shoot", "Grab the Cat!", "The cat is out", "The cat is loose", "Grab them!"
+        "Get them!", "Quick Shoot", "Grab the Cat!", "The cat is out", "The cat is loose", "Grab them!", "Get them! Don't let that cat escape!",
+        "Quick, shoot a spell at it!","Grab the cat before it's too late!","The cat is out! After it!",
+        "The cat is loose, we have to catch it before it's too late!","Grab them both, don't let the cat get away!",
+        "After that cat, it can't have gone far!","I won't let that cat slip away again!",
+        "The cat is quick, but we're quicker!","Get that cat back in its cell!"
 
     };
 
     private List<string> distractedDialoguseList = new List<string>
     {
-        "Guess a potion fell...", "That Cat must be near!", "I don't want to clean that."
+        "Guess a potion fell...", "That Cat must be near!", "I don't want to clean that.", "Guess a potion fell... Wait, where did the cat go?","I smell trouble... And a cat.",
+        "This place needs more light. I can barely see the cat in the shadows.",
+        "I'm not touching that. It might be cursed. Hey, where did the cat run off to?","Did you hear something? I think the cat might be trying to escape.",
+        "I'm taking a break. Keep an eye on the cat for me, will you?","I need a snack. But first, where did that darn cat go?",
+        "I don't want to clean that. I'd rather chase the cat around for a bit.","I'm bored. Let's play a game of cat and witch.",
+        "This place could use a bit of decoration. Oh, and where's the cat?"
     };
     bool alertStart;
     
@@ -271,7 +285,7 @@ public class GuardController : MonoBehaviour
     private void StandardDialogueSelection(){
         if (GuardStates.FollowingPlayer != state && GuardStates.Distracted != state){
             Debug.Log("StandardDialogueSelection");
-            if(Random.Range(0, 10) == 0){
+            if(Random.Range(0, 5) == 0){
                 dialogue = standardDialogueList[Random.Range(0, standardDialogueList.Count - 1)];
                 Debug.Log(dialogue);
                 StartCoroutine(clearDialogue());
