@@ -11,6 +11,9 @@ public class HidingObject : MonoBehaviour
     public ParticleSystem boxSparkles;
     public float pDistance;
 
+    public static float resetTimeAmount = 5; 
+    public float timeRemaining = resetTimeAmount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,15 @@ public class HidingObject : MonoBehaviour
         {
             HidePlayer();
         }
+
+        if (timeRemaining > 0 && isHiding)
+        {
+            timeRemaining -= Time.deltaTime;
+        } else if (timeRemaining <= 0 && isHiding) {
+            Destroy(this.gameObject); 
+            isHiding = false; 
+            Player.p.isHiding = false; 
+        }
     }
 
     private void HidePlayer() {
@@ -63,12 +75,12 @@ public class HidingObject : MonoBehaviour
             {
                 if (isHiding)
                 {
-
                     Player.p.transform.position = exitPosition.transform.position;
                     GetComponent<SpriteRenderer>().color = Color.white;
                     isHiding = false;
                     print("Player not hiding");
                     Player.p.isHiding = false;
+                    timeRemaining = resetTimeAmount;
                     //Player.p.GetComponent<BoxCollider2D>().enabled = false;
                 }
                 else
