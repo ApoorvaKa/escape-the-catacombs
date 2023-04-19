@@ -6,10 +6,15 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     public float timeToDie = 3f;
+    private float elapsedTime = 0f;
+    private GameObject player;
+    Animator playerAnimator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerAnimator = player.GetComponent<Animator>();
+
         Destroy(gameObject, timeToDie);
     }
 
@@ -30,11 +35,19 @@ public class Projectile : MonoBehaviour
         {
             //hurt player
             GameManager.gm.Restart();
-            Destroy(gameObject);
+            Debug.Log("PLAYER HITTTTTTTT");
+            //playerAnimator.SetTrigger("Player Dead");
+            //Invoke("EndGame", 1);
+            
         } else if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Walls"))
         {
             Destroy(gameObject);
         }
+    }
+
+    void EndGame(){
+        //GameManager.gm.Restart();
+        Destroy(gameObject);
     }
 
 
