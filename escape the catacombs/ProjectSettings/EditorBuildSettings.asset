@@ -18,6 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3.unity
     guid: 25afdbae22b51424db1fbcfb6ebe16ca
   - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 77ad3f6bad66450438c1d8077c147538
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: e9301e3fe0f333d468648bc50f11724e
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: abb109c6363c8bd47b3d8e76839d6f5a
+  - enabled: 1
     path: Assets/Scenes/LevelSandbox.unity
     guid: 3bdad98b66bc5b84cad1c32a527b2e8d
   m_configObjects: {}

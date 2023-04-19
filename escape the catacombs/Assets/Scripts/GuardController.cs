@@ -39,6 +39,7 @@ public class GuardController : MonoBehaviour
     public float AlertTimeLeft = 0;
 
     public float stopTimeLeft = 0f;
+    public float stopTimeCustom = 0f;
     public float shootCD = 1f;
     private bool shootingDone = true;
     public Light2D sight;
@@ -196,6 +197,10 @@ public class GuardController : MonoBehaviour
                 {
                     index = (index + 1) % patrolPoints.Length;
                     stopTimeLeft = 1f;
+                    if(stopTimeCustom > 0)
+                    {
+                        stopTimeLeft = stopTimeCustom;
+                    }
                     state = GuardStates.Stopped;
                 }
                 if (lightOn)
