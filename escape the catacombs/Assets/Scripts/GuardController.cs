@@ -61,7 +61,7 @@ public class GuardController : MonoBehaviour
     private List<string> standardDialogueList = new List<string>{
         "Keep an eye on the cat!", "Cats are evil!", "Keep that cat locked up!", "Make sure we keep the keys", "Did you forget your supplies somewhere?",
         "Don't underestimate that cat. It's smarter than you think.","I don't trust that cat. It's been plotting something since day one.",
-        "Keep your broomstick close. That cat has a knack for sneaking up on you.","I heard that cat can talk. Keep your ears open.",
+        "Keep your broomstick close. That cat has a knack for sneaking up on you.",
         "Make sure you check the cells thoroughly. That cat could be hiding anywhere.","If that cat gets away, it'll be on your head.",
         "I'm not taking any chances with that cat. I've got my wand at the ready.","I swear that cat is possessed. It's not natural.",
         "Keep your eyes peeled. That cat might have some tricks up its sleeve."
@@ -83,7 +83,7 @@ public class GuardController : MonoBehaviour
         "This place needs more light. I can barely see the cat in the shadows.",
         "I'm not touching that. It might be cursed. Hey, where did the cat run off to?","Did you hear something? I think the cat might be trying to escape.",
         "I'm taking a break. Keep an eye on the cat for me, will you?","I need a snack. But first, where did that darn cat go?",
-        "I don't want to clean that. I'd rather chase the cat around for a bit.","I'm bored. Let's play a game of cat and witch.",
+        "I don't want to clean that. I'd rather chase the cat around for a bit.","I'm bored. Let's play a game.",
         "This place could use a bit of decoration. Oh, and where's the cat?"
     };
     bool alertStart;
