@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     public GameObject orangeBar;
     public int hunger;
 
+    [SerializeField]
+    private FloatSO speedSO;
+
     public List<GuardController> distracts = new List<GuardController>();
 
     // Start is called before the first frame update
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        speedSO.Value = 5;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         GameManager.gm.hungerBar.transform.localScale = new Vector3( hunger/20, 1 ,  1 );
         if (hunger <= 0) {
             // game over
-            //GameManager.gm.Restart();
+            GameManager.gm.Restart();
         }
     }
 
