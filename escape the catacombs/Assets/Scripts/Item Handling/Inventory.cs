@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     public static Inventory i;
     public List<Item> itemsHeld;
     public Dictionary<Item, GameObject> itemInInventory;
+    [SerializeField]
+    private FloatSO speedSO;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,9 @@ public class Inventory : MonoBehaviour
             itemInInventory.Add(i, button);
             if (i.tag == "speed"){
                 Debug.Log("speed");
-                Player.p.isBoosted = true;
+                if (speedSO.Value < 20) {
+                    speedSO.Value += 5;
+                }
             }
             if (i.tag == "food"){
                 Debug.Log("food");

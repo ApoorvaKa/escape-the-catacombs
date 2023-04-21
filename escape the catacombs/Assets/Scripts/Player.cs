@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     public static Player p;
 
-    public float baseSpeed = 5;
+    [SerializeField]
+    private FloatSO speedSO;
     public float speed;
     public bool isBoosted = false;
     public static bool canMove = true;
@@ -29,21 +30,20 @@ public class Player : MonoBehaviour
         canMove = true; 
         isHiding = false; 
         slowZone = false;
-        speed = baseSpeed;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        if (speedSO.Value < 5){
+            speedSO.Value = 5;  
+        }
     }
     
     void Update() {
-        if (isBoosted) {
-            speed = 10;
-        } else if (slowZone) {
-            speed = 2;
-        } else {
-            if(hunger > 0)
-                speed = baseSpeed - (1/hunger);
-            if (hunger == 0)
-                speed = baseSpeed - 1;
+        // cut speed in half if in slow zone
+        if (slowZone){
+            speed = speedSO.Value / 2;
+        }else{
+            speed = speedSO.Value;
         }
+
 
         if (canMove && !isHiding) {
             if(slowZone){

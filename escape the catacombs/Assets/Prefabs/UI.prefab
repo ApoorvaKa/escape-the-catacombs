@@ -7009,6 +7009,7 @@ MonoBehaviour:
   hungerBar: {fileID: 0}
   orangeBar: {fileID: 0}
   hunger: 0
+  speedSO: {fileID: 11400000, guid: 0cea0aa966dcb4268ba9ad57b761db51, type: 2}
   distracts: []
 --- !u!1 &8107812406742247094
 GameObject:

@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6598b3eb32a149bda57d19e371e944e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedSO: {fileID: 11400000, guid: 0cea0aa966dcb4268ba9ad57b761db51, type: 2}
   baseSpeed: 5
   speed: 5
   isBoosted: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 32586
+  m_InstanceId: 62086
 --- !u!95 &4686035635053411224
 Animator:
   serializedVersion: 5
