@@ -406,6 +406,7 @@ MonoBehaviour:
   AlertTimer: 5
   AlertTimeLeft: 0
   stopTimeLeft: 0
+  stopTimeCustom: 0
   shootCD: 1.5
   sight: {fileID: 3974724681405159318}
   projectile: {fileID: 3097509857688942638, guid: ae8f3e64b543a2e4a91cb27f7c38f697, type: 3}
@@ -509,7 +510,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3974724679815469192}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

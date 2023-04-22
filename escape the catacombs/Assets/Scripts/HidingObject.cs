@@ -68,7 +68,7 @@ public class HidingObject : MonoBehaviour
                     isHiding = false;
                     print("Player not hiding");
                     Player.p.isHiding = false;
-                    //Player.p.GetComponent<BoxCollider2D>().enabled = false;
+                    Player.p.GetComponent<BoxCollider2D>().enabled = false;
                 }
                 else
                 {
@@ -77,7 +77,7 @@ public class HidingObject : MonoBehaviour
                     isHiding = true;
                     print("Player hiding");
                     Player.p.isHiding = true;
-                    //Player.p.GetComponent<BoxCollider2D>().enabled = true;
+                    Player.p.GetComponent<BoxCollider2D>().enabled = true;
                 }
             }
         }
