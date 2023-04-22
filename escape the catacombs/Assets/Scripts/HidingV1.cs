@@ -20,6 +20,9 @@ public class HidingV1 : MonoBehaviour
         isHiding = false;
 
         anim = GetComponent<Animator>();
+
+        anim.SetTrigger("TrBoxBreak"); 
+        anim.speed = 0; 
     }
 
     void Update(){
@@ -56,12 +59,11 @@ public class HidingV1 : MonoBehaviour
         if (Time.timeScale != 0 && Input.GetMouseButtonDown(0))
         {
             HidePlayer();
-            Debug.Log("Pressed");
         }
 
         if (timeRemaining > 0 && isHiding)
         {
-            timeRemaining -= Time.deltaTime;
+            timeRemaining -= Time.deltaTime; 
         } else if (timeRemaining <= 0 && isHiding) {
             Destroy(this.gameObject); 
             isHiding = false; 
@@ -83,7 +85,10 @@ public class HidingV1 : MonoBehaviour
                     isHiding = false;
                     print("Player not hiding");
                     Player.p.isHiding = false;
-                    timeRemaining = resetTimeAmount;
+                    if(timeRemaining > 0){
+                        anim.speed = 0; 
+                    }
+                    // timeRemaining = resetTimeAmount;
                     //Player.p.GetComponent<BoxCollider2D>().enabled = false;
                 }
                 else
@@ -92,7 +97,7 @@ public class HidingV1 : MonoBehaviour
                     GetComponent<SpriteRenderer>().color = Color.gray;
                     isHiding = true;
                     print("Player hiding");
-                    anim.SetTrigger("TrBoxBreak"); 
+                    anim.speed = 1f; 
                     Player.p.isHiding = true;
                     //Player.p.GetComponent<BoxCollider2D>().enabled = true;
                 }
