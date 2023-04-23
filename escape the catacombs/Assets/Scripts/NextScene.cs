@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
-    //public string nextScene = "Level1";
+    public string currScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +20,14 @@ public class NextScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && currScene != "Tutorial")
         {
             //SceneManager.LoadScene(nextScene);
             GetComponent<AudioSource>().Play();
             GameManager.gm.EndScreen();
             
+        } else if (collision.gameObject.CompareTag("Player") && currScene == "Tutorial") {
+            SceneManager.LoadScene("Level1");
         }
     }
 }
