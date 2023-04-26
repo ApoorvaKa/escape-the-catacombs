@@ -64,6 +64,10 @@ public class GameManager : MonoBehaviour
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
         UpdateMixerVolume();
+        foreach(var itm in Inventory.i.itemInInventory)
+        {
+            AddToInventory(itm.Key);
+        }
     }
 
     public void Restart()
@@ -74,7 +78,9 @@ public class GameManager : MonoBehaviour
 
     public void NextScene()
     {
-        
+        //Debug.Log("Items: " + PublicVars.inven.itemInInventory);
+        //PublicVars.inven = Inventory.i;
+        //Debug.Log("Items: " + PublicVars.inven.itemInInventory);
         SceneManager.LoadScene(nextScene);
     }
 

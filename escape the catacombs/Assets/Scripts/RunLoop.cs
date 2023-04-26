@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextScene : MonoBehaviour
+public class RunLoop : MonoBehaviour
 {
     public string currScene;
     // Start is called before the first frame update
@@ -28,6 +28,7 @@ public class NextScene : MonoBehaviour
             //PublicVars.inven.itemInInventory = Inventory.i.itemInInventory;
             GetComponent<AudioSource>().Play();
             GameManager.gm.EndScreen();
+            PublicVars.runNumber++;
         }
 
             

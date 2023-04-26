@@ -16,6 +16,12 @@ public class Inventory : MonoBehaviour
     {
         i = this;
         itemInInventory = new Dictionary<Item, GameObject>();
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Update()
+    {
+        player = GameObject.FindWithTag("Player");
     }
 
     public void obtainItem(Item i)

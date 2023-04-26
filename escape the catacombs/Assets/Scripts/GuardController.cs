@@ -93,6 +93,8 @@ public class GuardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        patrolSpeed += PublicVars.runNumber / 2;
+        alertSpeed += PublicVars.runNumber / 2.5f;
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         InvokeRepeating("StandardDialogueSelection", 5.0f, 5.0f);

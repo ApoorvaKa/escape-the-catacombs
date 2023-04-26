@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed += PublicVars.runNumber / 5;
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnimator = player.GetComponent<Animator>();
 
