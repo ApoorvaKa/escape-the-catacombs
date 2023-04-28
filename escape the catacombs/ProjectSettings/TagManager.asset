@@ -12,6 +12,7 @@ TagManager:
   - Chest
   - Potion
   - Witch
+  - HidingBox
   layers:
   - Default
   - TransparentFX
