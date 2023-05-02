@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2267268715079043838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2267268715079043836}
+  - component: {fileID: 2267268715079043839}
+  m_Layer: 0
+  m_Name: ChestPlacer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2267268715079043836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267268715079043838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.23981, y: 1.7257228, z: -0.84468704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2267268715079043839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267268715079043838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1236fb68269242c42a65652ba3439d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonChests:
+  - {fileID: 8536663043230916127, guid: 33d92ca5ce8c63842af25093e01d44f8, type: 3}
+  - {fileID: 8536663043230916127, guid: 3cf3830a165e65c46b4e4b2d4599edfe, type: 3}
+  - {fileID: 8536663043230916127, guid: 608b3fa6bd2299a41a4a78a386366a83, type: 3}
+  - {fileID: 8536663043230916127, guid: f294289df2feb9e408886974dd169eff, type: 3}
+  - {fileID: 8536663043230916127, guid: 64ec86220ec281942b2cf52ae431998a, type: 3}
+  - {fileID: 8536663043230916127, guid: ab49147def1c7cd408f7aba8aeba01ad, type: 3}
+  - {fileID: 8536663043230916127, guid: 34882950287bc554d8a8794590a42651, type: 3}
+  - {fileID: 8536663043230916127, guid: 81f21ef17b79c41438637c17adedea77, type: 3}
+  - {fileID: 8536663043230916127, guid: 34ba0cb7627e11147b706a936828f251, type: 3}
+  rareChests:
+  - {fileID: 8536663043230916127, guid: 9f0798fd7f5df1940af6aef7bf631b1c, type: 3}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  itemMin: 2
+  itemMax: 4
+  chestCount: 0
+  hidingParent: {fileID: 0}

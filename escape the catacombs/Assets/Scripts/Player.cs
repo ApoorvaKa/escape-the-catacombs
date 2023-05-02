@@ -22,8 +22,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     float horizontal, vertical;
 
+    float maxHunger;
+    float speedHunger;
+
     void Start() {
         GameManager.gm.hunger = (int)hunger;
+        maxHunger = hunger;
         p = this;
         rb = GetComponent<Rigidbody2D>();
         InvokeRepeating("LowerFood", 5.0f, 5.0f);
@@ -37,13 +41,15 @@ public class Player : MonoBehaviour
     }
     
     void Update() {
+        speedHunger = maxHunger % hunger;
+        speedHunger = speedHunger / 10;
         // cut speed in half if in slow zone
         if (slowZone){
             speed = speedSO.Value / 2;
         }else{
             speed = speedSO.Value;
         }
-
+        speed -= speedHunger;
 
         if (canMove && !isHiding) {
             if(slowZone){
@@ -90,7 +96,7 @@ public class Player : MonoBehaviour
         GameManager.gm.hungerBar.transform.localScale = new Vector3( hunger/20, 1 ,  1 );
         if (hunger <= 0) {
             // game over
-            GameManager.gm.Restart();
+            //GameManager.gm.Restart();
         }
     }
 

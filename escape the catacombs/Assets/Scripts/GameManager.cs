@@ -50,10 +50,12 @@ public class GameManager : MonoBehaviour
     private FloatSO speedSO;
 
     public List<GuardController> distracts = new List<GuardController>();
+    public Transform playerCoords;
 
     // Start is called before the first frame update
     void Start()
     {
+        PublicVars.spawnCoords = playerCoords.position;
         hasEnded = false;
         Time.timeScale = 1f;
         gm = this;

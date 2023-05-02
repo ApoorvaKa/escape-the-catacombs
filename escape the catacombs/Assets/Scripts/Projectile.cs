@@ -35,7 +35,15 @@ public class Projectile : MonoBehaviour
         if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Player"))
         {
             //hurt player
-            GameManager.gm.Restart();
+            //GameManager.gm.Restart();
+            collision.gameObject.transform.position = PublicVars.spawnCoords;
+            foreach(GuardController guard in GameManager.gm.distracts)
+            {
+                guard.gameObject.transform.position = guard.patrolPoints[0].transform.position;
+                guard.AlertTimeLeft = 0;
+                guard.dialogue = "";
+                //guard.state = GuardController.GuardStates.Stopped;
+            }
             Debug.Log("PLAYER HITTTTTTTT");
             //playerAnimator.SetTrigger("Player Dead");
             //Invoke("EndGame", 1);

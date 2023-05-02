@@ -94,7 +94,7 @@ public class GuardController : MonoBehaviour
     void Start()
     {
         patrolSpeed += PublicVars.runNumber / 2;
-        alertSpeed += PublicVars.runNumber / 2.5f;
+        alertSpeed += PublicVars.runNumber / 2f;
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         InvokeRepeating("StandardDialogueSelection", 5.0f, 5.0f);
