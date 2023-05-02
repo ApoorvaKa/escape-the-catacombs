@@ -66,9 +66,12 @@ public class GameManager : MonoBehaviour
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
         UpdateMixerVolume();
-        foreach(var itm in Inventory.i.itemInInventory)
+        if (Inventory.i.itemInInventory.Count != 0)
         {
-            AddToInventory(itm.Key);
+            foreach (var itm in Inventory.i.itemInInventory)
+            {
+                AddToInventory(itm.Key);
+            }
         }
     }
 
@@ -269,6 +272,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             SceneManager.LoadScene("LevelSandbox");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            SceneManager.LoadScene("Tutorial");
         }
     }
 }
