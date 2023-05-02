@@ -53,7 +53,10 @@ public class HidingObject : MonoBehaviour
         }
         if(Time.timeScale != 0 && Input.GetKeyDown(KeyCode.E))
         {
-            HidePlayerKey();
+            if (pDistance<3)
+            {
+                HidePlayerKey();
+            }
         }
         if(Time.timeScale != 0 && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
