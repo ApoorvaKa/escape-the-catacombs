@@ -9,6 +9,8 @@ public class HidingV1 : MonoBehaviour
     public bool isHiding;
     public ParticleSystem boxSparkles;
     public float pDistance;
+    public bool colliding = false;
+    public bool canEscape = true;
 
     public static float resetTimeAmount = 5; 
     public float timeRemaining = resetTimeAmount;
@@ -60,11 +62,21 @@ public class HidingV1 : MonoBehaviour
         {
             HidePlayer();
         }
+        if(Time.timeScale != 0 && Input.GetKeyDown(KeyCode.E))
+        {
+            HidePlayerKey();
+        }
+        if(Time.timeScale != 0 && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+        {
+            EscapeWithMovement();
+        }
 
         if (timeRemaining > 0 && isHiding)
         {
             timeRemaining -= Time.deltaTime; 
-        } else if (timeRemaining <= 0 && isHiding) {
+        } 
+        
+        if (timeRemaining <= 0 && isHiding) {
             Destroy(this.gameObject); 
             isHiding = false; 
             Player.p.isHiding = false; 
@@ -99,9 +111,71 @@ public class HidingV1 : MonoBehaviour
                     print("Player hiding");
                     anim.speed = 1f; 
                     Player.p.isHiding = true;
+                    StartCoroutine(hideWait());
                     //Player.p.GetComponent<BoxCollider2D>().enabled = true;
                 }
             }
         }
+    }
+    private void HidePlayerKey()
+    {
+        if (colliding)
+        {
+            if (isHiding)
+            {
+                Player.p.transform.position = exitPosition.transform.position;
+                GetComponent<SpriteRenderer>().color = Color.white;
+                isHiding = false;
+                print("Player not hiding");
+                Player.p.isHiding = false;
+                if(timeRemaining > 0){
+                    anim.speed = 0; 
+                }
+                Player.p.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            else
+            {
+                Player.p.transform.position = transform.position;
+                GetComponent<SpriteRenderer>().color = Color.gray;
+                isHiding = true;
+                print("Player hiding");
+                anim.speed = 1f; 
+                Player.p.isHiding = true;
+                Player.p.GetComponent<BoxCollider2D>().enabled = true;
+                StartCoroutine(hideWait());
+            }
+        }
+    }
+
+    private void EscapeWithMovement()
+    {
+        if (isHiding && canEscape)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+            isHiding = false;
+            print("Player not hiding");
+            Player.p.isHiding = false;
+            if(timeRemaining > 0){
+                anim.speed = 0; 
+            }
+            Player.p.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        colliding = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        colliding = false;
+    }
+
+    IEnumerator hideWait()
+    {
+        canEscape = false;
+        yield return new WaitForSeconds(1.0f);
+        canEscape = true;
     }
 }
