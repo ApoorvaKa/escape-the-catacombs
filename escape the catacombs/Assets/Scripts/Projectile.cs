@@ -42,6 +42,11 @@ public class Projectile : MonoBehaviour
                 guard.gameObject.transform.position = guard.patrolPoints[0].transform.position;
                 guard.AlertTimeLeft = 0;
                 guard.dialogue = "";
+                GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+                foreach(GameObject arrow in arrows)
+                {
+                    Destroy(arrow);
+                }
                 //guard.state = GuardController.GuardStates.Stopped;
             }
             Debug.Log("PLAYER HITTTTTTTT");
