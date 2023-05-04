@@ -32,8 +32,19 @@ public class Arrow : MonoBehaviour
         if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Player"))
         {
             //hurt player
-            GameManager.gm.Restart();
-            Destroy(gameObject);
+            collision.gameObject.transform.position = PublicVars.spawnCoords;
+            foreach (GuardController guard in GameManager.gm.distracts)
+            {
+                guard.gameObject.transform.position = guard.patrolPoints[0].transform.position;
+                guard.AlertTimeLeft = 0;
+                guard.dialogue = "";
+                //guard.state = GuardController.GuardStates.Stopped;
+            }
+            GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+            foreach (GameObject arrow in arrows)
+            {
+                Destroy(arrow);
+            }
         } else if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Walls"))
         {
             Destroy(gameObject);

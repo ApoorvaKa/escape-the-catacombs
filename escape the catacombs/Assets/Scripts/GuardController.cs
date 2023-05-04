@@ -98,6 +98,7 @@ public class GuardController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         InvokeRepeating("StandardDialogueSelection", 5.0f, 5.0f);
+        Debug.Log("Added");
         GameManager.gm.distracts.Add(this);
         displayedDialogue.text = "";
         alertStart = true;
@@ -145,26 +146,29 @@ public class GuardController : MonoBehaviour
             if (debugLines)
                 lines[i].SetPosition(0, rayPoints[i].position);
             hit = Physics2D.Raycast(rayPoints[i].position, rayPoints[i].up, dist*multiplier, rayLayer);
-            
-            if (hit)
+            if (sight.enabled)
             {
-                //Vector2 localHit = transform.InverseTransformPoint(hit.point);
-                if (debugLines)
-                    lines[i].SetPosition(1, hit.point);
-                if (hit.transform.gameObject.CompareTag("Player") && !Player.p.isHiding)
+                if (hit)
                 {
-                    sight.intensity = 4f;
-                    target = hit.transform;
-                    destSetter.target = target;
-                    state = GuardStates.FollowingPlayer;
-                    AlertTimeLeft = AlertTimer;
+                    //Vector2 localHit = transform.InverseTransformPoint(hit.point);
+                    if (debugLines)
+                        lines[i].SetPosition(1, hit.point);
+                    if (hit.transform.gameObject.CompareTag("Player") && !Player.p.isHiding)
+                    {
+                        sight.intensity = 4f;
+                        target = hit.transform;
+                        destSetter.target = target;
+                        state = GuardStates.FollowingPlayer;
+                        AlertTimeLeft = AlertTimer;
+                    }
                 }
-            } else
-            {
-                if (debugLines)
+                else
                 {
-                    Vector2 end = rayPoints[i].position + rayPoints[i].up * dist * multiplier;
-                    lines[i].SetPosition(1, end);
+                    if (debugLines)
+                    {
+                        Vector2 end = rayPoints[i].position + rayPoints[i].up * dist * multiplier;
+                        lines[i].SetPosition(1, end);
+                    }
                 }
             }
         }

@@ -74,6 +74,7 @@ public class ToggleLights : MonoBehaviour
             fixer.GoToFixLight(transform, this);
             foreach (var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
             {
+                Debug.Log(e.gameObject.name);
                 e.TurnOffLight();
             }
         }

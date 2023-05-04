@@ -251,6 +251,18 @@ PrefabInstance:
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3974724681405159318, guid: c94888de4e623264ea4b0a5d34d6139b, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974724681405159318, guid: c94888de4e623264ea4b0a5d34d6139b, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: -1955831219
+      objectReference: {fileID: 0}
+    - target: {fileID: 3974724681405159318, guid: c94888de4e623264ea4b0a5d34d6139b, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[2]
+      value: -1010359937
+      objectReference: {fileID: 0}
     - target: {fileID: 3974724681633203804, guid: c94888de4e623264ea4b0a5d34d6139b, type: 3}
       propertyPath: m_Name
       value: EnemyHolder Pink Variant
