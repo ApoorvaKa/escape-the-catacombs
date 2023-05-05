@@ -158,12 +158,16 @@ public class Player : MonoBehaviour
     public void cleanScene()
     {
         gameObject.transform.position = PublicVars.spawnCoords;
-        GameObject lightSwitch = GameObject.FindGameObjectWithTag("Power");
-        if(lightSwitch.GetComponent<ToggleLights>().lightsOn == false)
+        GameObject[] lightSwitch = GameObject.FindGameObjectsWithTag("Power");
+        foreach(GameObject lightS in lightSwitch)
         {
-            lightSwitch.GetComponent<ToggleLights>().lightsOn = true;
-            lightSwitch.GetComponent<ToggleLights>().nightVision.SetActive(false);
+            if (lightS.GetComponent<ToggleLights>().lightsOn == false)
+            {
+                lightS.GetComponent<ToggleLights>().lightsOn = true;
+                lightS.GetComponent<ToggleLights>().nightVision.SetActive(false);
+            }
         }
+
         foreach (GuardController guard in GameManager.gm.distracts)
         {
             guard.TurnOnLight();
@@ -174,17 +178,14 @@ public class Player : MonoBehaviour
             {
                 PublicVars.enemiesEscaped--;
             }
-            if (guard.state == GuardController.GuardStates.GoingToPoint)
-            {
-                guard.state = GuardController.GuardStates.Stopped;
-            }
             if(PublicVars.enemiesEscaped < 0)
             {
                 PublicVars.enemiesEscaped = 0;
             }
             guard.AlertTimeLeft = 0;
             guard.dialogue = "";
-            //guard.state = GuardController.GuardStates.Stopped;
+            guard.state = GuardController.GuardStates.Stopped;
+            guard.stopTimeLeft = 1f;
         }
         GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
         foreach (GameObject arrow in arrows)

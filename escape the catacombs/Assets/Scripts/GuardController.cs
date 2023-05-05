@@ -189,6 +189,9 @@ public class GuardController : MonoBehaviour
                 {
                     transform.localEulerAngles = new Vector3(0, 0, angle);
                 }
+                target = null;
+                sight.intensity = .8f;
+                alertStart = true;
                 stopTimeLeft -= Time.deltaTime;
                 path.maxSpeed = 0f;
                 if(lightOn)

@@ -75,7 +75,10 @@ public class ToggleLights : MonoBehaviour
             foreach (var e in FindObjectsByType<GuardController>(FindObjectsSortMode.None))
             {
                 Debug.Log(e.gameObject.name);
-                e.TurnOffLight();
+                if(e.state != GuardController.GuardStates.FollowingPlayer)
+                {
+                    e.TurnOffLight();
+                }
             }
         }
         
