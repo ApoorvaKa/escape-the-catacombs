@@ -69,11 +69,11 @@ public class GameManager : MonoBehaviour
         musicSlider.value = musicVolume;
         sfxSlider.value = sfxVolume;
         UpdateMixerVolume();
-        if (Inventory.i.itemInInventory.Count != 0)
+        if (Inventory.i.itemsHeld.Count != 0)
         {
-            foreach (var itm in Inventory.i.itemInInventory)
+            foreach (var itm in Inventory.i.itemsHeld)
             {
-                AddToInventory(itm.Key);
+                AddToInventory(itm);
             }
         }
     }
@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         //PublicVars.inven = Inventory.i;
         //Debug.Log("Items: " + PublicVars.inven.itemInInventory);
         SceneManager.LoadScene(nextScene);
+        PublicVars.levelsCompleted++;
     }
 
     public void EndScreen()
@@ -97,6 +98,9 @@ public class GameManager : MonoBehaviour
         HungerScreen.SetActive(false);
         hasEnded = true;
         Time.timeScale = 0f;
+        PublicVars.totalItems += itemsInLevel;
+        PublicVars.missedItems += itemsInLevel - itemsObtained;
+        PublicVars.totalItemsFound += itemsObtained;
         itemCounter.text = itemsObtained + " / " + itemsInLevel;
         int itemsLeft = itemsInLevel - itemsObtained;
         switch (itemsLeft)

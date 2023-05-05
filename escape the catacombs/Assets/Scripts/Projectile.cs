@@ -35,6 +35,7 @@ public class Projectile : MonoBehaviour
         if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Walls"))
         {
             Destroy(gameObject);
+            PublicVars.attacksEvaded++;
         }
     }
 

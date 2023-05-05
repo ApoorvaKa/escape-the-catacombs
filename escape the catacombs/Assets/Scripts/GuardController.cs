@@ -236,6 +236,7 @@ public class GuardController : MonoBehaviour
                     sight.intensity = .8f;
                     state = GuardStates.Stopped;
                     alertStart = true;
+                    PublicVars.enemiesEscaped++;
                 }
                 
                 break;
