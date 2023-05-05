@@ -13,6 +13,7 @@ TagManager:
   - Potion
   - Witch
   - HidingBox
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryContentHead;
 
     public GameObject PauseScreen;
+    public float originalVolume = 1f;
     public float masterVolume = 1f;
     public float musicVolume = 1f;
     public float sfxVolume = 1f;
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
 
     public List<GuardController> distracts = new List<GuardController>();
     public Transform playerCoords;
+
+    public GameObject blackOut;
 
     // Start is called before the first frame update
     void Start()
@@ -277,5 +280,54 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Tutorial");
         }
+    }
+
+    public void fadeOut()
+    {
+        Debug.Log("Master vol: " + masterVolume);
+        originalVolume = masterVolume;
+        StartCoroutine(FadeBlack(true, 1));
+
+    }
+    public void fadeIn()
+    {
+        StartCoroutine(FadeBlack(false, 1));
+        if (masterVolume < originalVolume)
+        {
+            OnMasterSliderValueChange(originalVolume);
+            Debug.Log("Increased vol" + masterVolume);
+            Debug.Log("original vol" + originalVolume);
+        }
+    }
+    public IEnumerator FadeBlack(bool fadeToBlack = true, int fadeSpeed = 3)
+    {
+        Color objectColor = blackOut.GetComponent<SpriteRenderer>().color;
+        float fadeAmount;
+        if (fadeToBlack)
+        {
+            while(blackOut.GetComponent<SpriteRenderer>().color.a < 1)
+            {
+                fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
+                OnMasterSliderValueChange(Time.deltaTime);
+                Debug.Log(masterVolume);
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackOut.GetComponent<SpriteRenderer>().color = objectColor;
+                yield return null;
+            }
+            yield return new WaitForSeconds(2f);
+            Player.p.cleanScene();
+        }
+        else
+        {
+            while(blackOut.GetComponent<SpriteRenderer>().color.a > 0)
+            {
+                fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
+
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackOut.GetComponent<SpriteRenderer>().color = objectColor;
+                yield return null;
+            }
+        }
+
     }
 }

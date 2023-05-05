@@ -380,13 +380,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedSO: {fileID: 11400000, guid: 0cea0aa966dcb4268ba9ad57b761db51, type: 2}
-  baseSpeed: 5
   speed: 5
   isBoosted: 0
   isHiding: 0
   hunger: 20
   playerAnimator: {fileID: 4686035635053411224}
   batAnimator: {fileID: 4686035636262270482}
+  ado: {fileID: 4686035634849953081}
+  sp: {fileID: 6159032560178549014}
 --- !u!50 &4686035635053411229
 Rigidbody2D:
   serializedVersion: 4
@@ -460,7 +461,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 62086
+  m_InstanceId: 113762
 --- !u!95 &4686035635053411224
 Animator:
   serializedVersion: 5

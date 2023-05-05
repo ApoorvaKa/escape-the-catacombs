@@ -32,30 +32,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Player"))
-        {
-            //hurt player
-            //GameManager.gm.Restart();
-            collision.gameObject.transform.position = PublicVars.spawnCoords;
-            foreach(GuardController guard in GameManager.gm.distracts)
-            {
-                guard.gameObject.transform.position = guard.patrolPoints[0].transform.position;
-                Debug.Log("Moved");
-                guard.gameObject.transform.rotation = guard.originalRotation;
-                guard.AlertTimeLeft = 0;
-                guard.dialogue = "";
-                //guard.state = GuardController.GuardStates.Stopped;
-            }
-            GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
-            foreach (GameObject arrow in arrows)
-            {
-                Destroy(arrow);
-            }
-            Debug.Log("PLAYER HITTTTTTTT");
-            //playerAnimator.SetTrigger("Player Dead");
-            //Invoke("EndGame", 1);
-            
-        } else if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Walls"))
+        if (!GameManager.gm.hasEnded && collision.gameObject.CompareTag("Walls"))
         {
             Destroy(gameObject);
         }

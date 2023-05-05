@@ -6,7 +6,6 @@ using UnityEngine.UI;
 //adapted from https://www.youtube.com/watch?v=-bkmPm_Besk
 public class ShootPotions : MonoBehaviour
 {
-
     public Camera mainCam;
     private Vector3 mousePos;
     public GameObject potion;
@@ -43,9 +42,19 @@ public class ShootPotions : MonoBehaviour
             canFire = false;
             Instantiate(potion, batTransformation.position, Quaternion.identity);
             batAnimator.SetTrigger("Throwing");
-            Destroy(potions[potionsThrown]);
+            potions[potionsThrown].gameObject.SetActive(false);
+            //Destroy(potions[potionsThrown]);
             potionsThrown++;
 
         }
+    }
+
+    public void Reload()
+    {
+        foreach (var potion in potions)
+        {
+            potion.gameObject.SetActive(true);
+        }
+        potionsThrown = 0;
     }
 }
