@@ -35,8 +35,8 @@ public class Inventory : MonoBehaviour
             itemInInventory.Add(i, button);
             if (i.tag == "speed"){
                 Debug.Log("speed");
-                if (speedSO.Value < 20) {
-                    speedSO.Value += 5;
+                if (speedSO.Value < 15) {
+                    speedSO.Value += 3;
                 }
             }
             if (i.tag == "food"){
