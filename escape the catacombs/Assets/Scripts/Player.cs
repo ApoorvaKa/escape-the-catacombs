@@ -130,12 +130,19 @@ public class Player : MonoBehaviour
     {
         if (!dying && (collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Projectile")))
         {
+            if (collision.gameObject.CompareTag("Arrow"))
+            {
+                PublicVars.arrowDeathCount++;
+            }
+            if (collision.gameObject.CompareTag("Projectile"))
+            {
+                PublicVars.witchDeathCount++;
+            }
             dying = true;
             //hurt player
             //GameManager.gm.Restart();
             GameManager.gm.fadeOut();
             canMove = false;
-
             StartCoroutine(audioFade(2.5f));
             Debug.Log("PLAYER HITTTTTTTT");
             //playerAnimator.SetTrigger("Player Dead");
@@ -151,11 +158,30 @@ public class Player : MonoBehaviour
     public void cleanScene()
     {
         gameObject.transform.position = PublicVars.spawnCoords;
+        GameObject lightSwitch = GameObject.FindGameObjectWithTag("Power");
+        if(lightSwitch.GetComponent<ToggleLights>().lightsOn == false)
+        {
+            lightSwitch.GetComponent<ToggleLights>().lightsOn = true;
+            lightSwitch.GetComponent<ToggleLights>().nightVision.SetActive(false);
+        }
         foreach (GuardController guard in GameManager.gm.distracts)
         {
+            guard.TurnOnLight();
             guard.gameObject.transform.position = guard.patrolPoints[0].transform.position;
             Debug.Log("Moved");
             guard.gameObject.transform.rotation = guard.originalRotation;
+            if(guard.state == GuardController.GuardStates.FollowingPlayer)
+            {
+                PublicVars.enemiesEscaped--;
+            }
+            if (guard.state == GuardController.GuardStates.GoingToPoint)
+            {
+                guard.state = GuardController.GuardStates.Stopped;
+            }
+            if(PublicVars.enemiesEscaped < 0)
+            {
+                PublicVars.enemiesEscaped = 0;
+            }
             guard.AlertTimeLeft = 0;
             guard.dialogue = "";
             //guard.state = GuardController.GuardStates.Stopped;
