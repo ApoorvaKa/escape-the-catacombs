@@ -55,6 +55,8 @@ public class GuardController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip shootingSound;
 
+    public Quaternion originalRotation;
+
     public GameObject witchTextCanvas;
     public TextMeshProUGUI displayedDialogue;
     public string dialogue;
@@ -93,6 +95,7 @@ public class GuardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalRotation = transform.rotation;
         patrolSpeed += PublicVars.runNumber / 2;
         alertSpeed += PublicVars.runNumber / 2f;
         audioSource = GetComponent<AudioSource>();

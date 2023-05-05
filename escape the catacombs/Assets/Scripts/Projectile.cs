@@ -40,6 +40,8 @@ public class Projectile : MonoBehaviour
             foreach(GuardController guard in GameManager.gm.distracts)
             {
                 guard.gameObject.transform.position = guard.patrolPoints[0].transform.position;
+                Debug.Log("Moved");
+                guard.gameObject.transform.rotation = guard.originalRotation;
                 guard.AlertTimeLeft = 0;
                 guard.dialogue = "";
                 //guard.state = GuardController.GuardStates.Stopped;
