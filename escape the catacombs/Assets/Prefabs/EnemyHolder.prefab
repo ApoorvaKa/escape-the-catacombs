@@ -227,7 +227,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -806024711
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -2088318768, guid: 12c40ba49dac241b19c2416ba3e0d374, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -806024711
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 7
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -416,6 +416,7 @@ MonoBehaviour:
   distractionRange: 7
   spriteController: {fileID: 3961061798078084256}
   shootingSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  originalRotation: {x: 0, y: 0, z: 0, w: 0}
   witchTextCanvas: {fileID: 4436144873932354674}
   displayedDialogue: {fileID: 5318519261938209435}
   dialogue: 
@@ -716,7 +717,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -806024711
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -1157,7 +1158,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -806024711
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -1445,7 +1446,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -806024711
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -1629,8 +1630,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: -1390236051
-  m_SortingOrder: 0
+  m_SortingLayerID: -1955831219
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7753525676389013154
 MonoBehaviour:
