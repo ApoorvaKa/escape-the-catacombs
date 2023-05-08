@@ -45,13 +45,42 @@ public class Analytics : MonoBehaviour
 
     public string CalculateRank()
     {
-        int score = 0;
-        int itemsPerLevel = PublicVars.totalItemsFound / PublicVars.levelsCompleted;
+        float score = 0;
+        float itemsPerLevel = PublicVars.totalItemsFound / PublicVars.levelsCompleted;
         score += itemsPerLevel;
         score -= PublicVars.missedItems / PublicVars.levelsCompleted;
         score += PublicVars.levelsCompleted;
         score -= (PublicVars.arrowDeathCount + PublicVars.witchDeathCount) / 2;
-        return score.ToString();
+        string scoreLetter = "";
+        if(score < 5)
+        {
+            scoreLetter = "E";
+        }
+        else if(score < 8 && score >= 5)
+        {
+            scoreLetter = "D";
+        }
+        else if (score < 11 && score >= 8)
+        {
+            scoreLetter = "C";
+        }
+        else if (score < 15 && score >= 11)
+        {
+            scoreLetter = "B";
+        }
+        else if (score < 25 && score >= 15)
+        {
+            scoreLetter = "A";
+        }
+        else if (score < 50 && score >= 25)
+        {
+            scoreLetter = "S";
+        }
+        else if (score >= 50)
+        {
+            scoreLetter = "SSS";
+        }
+        return scoreLetter;
     }
     public string FormatElapsedTime(float timeInSeconds)
     {

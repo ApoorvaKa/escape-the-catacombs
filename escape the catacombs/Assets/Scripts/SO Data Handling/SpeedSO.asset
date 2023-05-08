@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1eb7b100a8774d82ad10ab46a367dee, type: 3}
   m_Name: SpeedSO
   m_EditorClassIdentifier: 
-  _value: 5
+  _value: 3
